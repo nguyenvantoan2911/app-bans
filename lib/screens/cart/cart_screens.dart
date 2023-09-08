@@ -30,7 +30,7 @@ class CartScreens extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                    primary:const Color.fromARGB(255, 167, 227, 235)),
+                    primary: const Color.fromARGB(255, 167, 227, 235)),
                 child: Icon(
                   Icons.delete,
                   color: color,
@@ -69,7 +69,7 @@ class CartScreens extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               onTap: () {},
               child: Padding(
-                padding:const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: TextWidget(
                     text: 'Order Now', color: color, texSize: FontStyle.italic),
               ),

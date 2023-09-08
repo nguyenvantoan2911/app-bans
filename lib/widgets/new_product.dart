@@ -25,74 +25,87 @@ class _NewProductState extends State<NewProduct> {
     Utils utils = Utils(context);
     double _screenWith = MediaQuery.of(context).size.width;
     Color color = utils.color;
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
-          color: Color.fromARGB(255, 244, 224, 164)),
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          children: [
-            Container(
-              height: _screenWith * 0.3,
-              width: _screenWith * 0.3,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: AssetImage(widget.images))),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+              color: Color.fromARGB(255, 244, 224, 164)),
+          child: InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(12),
+            child: Column(
               children: [
-                TextWidget(
-                    text: widget.names,
-                    color: Colors.black,
-                    texSize: FontStyle.italic),
-                HeartBTN()
+                Container(
+                  height: _screenWith * 0.3,
+                  width: _screenWith * 0.3,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(image: AssetImage(widget.images))),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextWidget(
+                        text: widget.names,
+                        color: Colors.black,
+                        texSize: FontStyle.italic),
+                    HeartBTN()
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  child: Row(
+                    children: [
+                      TextWidget(
+                          text: 'Giá:',
+                          color: Colors.black,
+                          texSize: FontStyle.normal),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      TextWidget(
+                          text: widget.giasoc,
+                          color: Colors.red,
+                          texSize: FontStyle.normal),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        widget.gia,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            decoration: TextDecoration.lineThrough),
+                      ),
+                    ],
+                  ),
+                ),
+                TextButton(
+                    onPressed: () {},
+                    child: TextWidget(
+                        text: 'Add to card',
+                        color: Colors.black,
+                        texSize: FontStyle.italic))
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 15),
-              child: Row(
-                children: [
-                  TextWidget(
-                      text: 'Giá:',
-                      color: Colors.black,
-                      texSize: FontStyle.normal),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  TextWidget(
-                      text: widget.giasoc,
-                      color: Colors.red,
-                      texSize: FontStyle.normal),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    widget.gia,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        decoration: TextDecoration.lineThrough),
-                  ),
-                ],
-              ),
-            ),
-            TextButton(
-                onPressed: () {},
-                child: TextWidget(
-                    text: 'Add to card',
-                    color: Colors.black,
-                    texSize: FontStyle.italic))
-          ],
+          ),
         ),
-      ),
+        Positioned(
+            top: -10,
+            right: -17,
+            child: Container(
+              height: 85,
+              width: 100,
+              child: Image.asset(
+                  'assets/offres/ofres/tải_xuống-removebg-preview.png'),
+            )),
+      ],
     );
   }
 }

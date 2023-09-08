@@ -1,19 +1,21 @@
+import 'package:app/inner_screens/on_sale/cooking_spices_screen.dart';
+import 'package:app/inner_screens/on_sale/food.dart';
+import 'package:app/inner_screens/on_sale/fruitscreen.dart';
+import 'package:app/inner_screens/on_sale/vagetable_screen.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class OnSaleWidget extends StatefulWidget {
-  OnSaleWidget(
-      {super.key,
-      required this.images,
-      required this.name,
-      required this.giagoc,
-      required this.giamgia});
+  OnSaleWidget({
+    super.key,
+    required this.images,
+    required this.name,
+  });
   late String images;
   late String name;
-  late String giagoc;
-  late String giamgia;
+
   @override
   State<OnSaleWidget> createState() => _OnSaleWidgetState();
 }
@@ -34,30 +36,27 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
           onTap: () {},
           child: Column(children: [
             Container(
-              color: Colors.pink[70],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              width: size.width * 0.4,
+              height: size.height * 0.165,
+              child: Column(
                 children: [
                   GestureDetector(
                       onTap: () {},
                       child: Container(
-                        height: size.height * 0.15,
-                        width: size.width * 0.17,
+                        height: size.height * 0.08,
+                        width: size.width * 0.35,
                         child: Image.asset(widget.images),
                       )),
-                  Column(
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
                       TextWidget(
                           text: widget.name,
                           color: Colors.black,
                           texSize: FontStyle.italic),
-                      const SizedBox(
-                        height: 5,
-                      ),
                       Row(
                         children: [
                           GestureDetector(
@@ -82,42 +81,47 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextWidget(
-                          text: 'Giá :',
-                          color: Colors.black,
-                          texSize: FontStyle.normal),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      FittedBox(
-                        child: Row(
-                          children: [
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            TextWidget(
-                                text: widget.giagoc,
-                                color: const Color.fromARGB(255, 218, 49, 49),
-                                texSize: FontStyle.normal),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              ' ${widget.giamgia}',
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  decoration: TextDecoration.lineThrough,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      )
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 4.2,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        if (widget.name == 'lương thực') {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return FoodSecreen();
+                          }));
+                        } else if (widget.name == 'đồ ăn vặt') {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return VagetableScreen();
+                          }));
+                        } else if (widget.name == 'gia vị') {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return CookingSpicesScreen();
+                          }));
+                        } else if (widget.name == 'rau') {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return VagetableScreen();
+                          }));
+                        } else if (widget.name == 'củ quả') {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return FruitScreen();
+                          }));
+                        }
+                      },
+                      child: const Text(
+                        'Mua Ngay',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 191, 32, 227)),
+                      ))
                 ],
               ),
             )

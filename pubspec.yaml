@@ -71,6 +71,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/vegetable list/rau. /cải_canh-removebg-preview.png
+    - assets/vegetable list/rau. /cải_thìa-removebg-preview.png
+    - assets/vegetable list/rau. /mướp_đắng-removebg-preview.png
+    - assets/vegetable list/rau. /rau_chân_vịt-removebg-preview.png
+    - assets/vegetable list/rau. /rau_đay-removebg-preview.png
+    - assets/vegetable list/rau. /su_hào-removebg-preview.png
     - assets/cart/grains.png
     - assets/cart/nuts.png
     - assets/cart/spices.png
@@ -96,6 +102,38 @@ flutter:
     - assets/vegetable list/rau. /rau_xa_nach-removebg-preview.png
     - assets/vegetable list/rau. /supno-removebg-preview.png
     - assets/vegetable list/rau. /tải_xuống-removebg-preview.png
+    - assets/food/lương thực/gạo_trắng-removebg-preview.png
+    - assets/food/lương thực/khoai_lang-removebg-preview.png
+    - assets/food/lương thực/khoai_môn-removebg-preview.png
+    - assets/food/lương thực/khoai_tây-removebg-preview.png
+    - assets/food/lương thực/ngô-removebg-preview.png
+    - assets/food/lương thực/sắn_ta-removebg-preview.png
+    - assets/cooking_spices/bột_nêm-removebg-preview.png
+    - assets/cooking_spices/bột_ớt-removebg-preview.png
+    - assets/cooking_spices/mam_cá_sinh-removebg-preview.png
+    - assets/cooking_spices/mayonnaise-removebg-preview.png
+    - assets/cooking_spices/mắn_nam_ngư-removebg-preview.png
+    - assets/cooking_spices/mắn_tôm-removebg-preview.png
+    - assets/cooking_spices/mì_chính-removebg-preview.png
+    - assets/cooking_spices/muoi-removebg-preview.png
+    - assets/cooking_spices/muoihaohao-removebg-preview.png
+    - assets/cooking_spices/ngũ_vị_hương-removebg-preview.png
+    - assets/cooking_spices/tương_bần-removebg-preview.png
+    - assets/cooking_spices/tương_cà-removebg-preview.png
+    - assets/offres/ofres/tải_xuống-removebg-preview.png
+    - assets/fruit/củ/cà_rốt-removebg-preview.png
+    - assets/fruit/củ/cà_tím-removebg-preview.png
+    - assets/fruit/củ/chôm_chôm-removebg-preview.png
+    - assets/fruit/củ/củ_cải-removebg-preview.png
+    - assets/fruit/củ/củ_đâu-removebg-preview.png
+    - assets/fruit/củ/củ_hành-removebg-preview.png
+    - assets/fruit/củ/đào-removebg-preview.png
+    - assets/fruit/củ/mận-removebg-preview.png
+    - assets/fruit/củ/mít-removebg-preview.png
+    - assets/fruit/củ/quả_táo-removebg-preview.png
+    - assets/fruit/củ/tải_xuống__1_-removebg-preview.png
+    - assets/fruit/củ/tỏi-removebg-preview.png
+    - assets/fruit/củ/vải-removebg-preview (1).png
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

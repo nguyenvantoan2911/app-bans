@@ -14,7 +14,6 @@ class CartWidget extends StatefulWidget {
 }
 
 class _CartWidgetState extends State<CartWidget> {
- 
   int count = 0;
   void tang() {
     setState(() {

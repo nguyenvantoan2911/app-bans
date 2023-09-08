@@ -49,68 +49,72 @@ class _FeedScreensState extends State<FeedScreens> {
       create: (context) => _blocProducts,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 142, 240, 165),
           title: TextWidget(
               text: 'All Products',
               color: Colors.black,
               texSize: FontStyle.italic),
         ),
-        body: Column(
-          children: [
-            Container(
-              height: 60,
-              child: TextField(
-                focusNode: _searchTextFocusnode,
-                controller: _searchTextController,
-                onChanged: (value) {
-                  updateDisplayedProducts(value);
-                },
-                decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: const BorderSide(
-                            color: Colors.greenAccent, width: 2)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                            color: Colors.greenAccent, width: 2)),
-                    hintText: 'What in your mind',
-                    prefixIcon: const Icon(Icons.search),
-                    suffix: IconButton(
-                      onPressed: () {
-                        _searchTextController!.clear();
-                        _searchTextFocusnode.unfocus();
-                        updateDisplayedProducts('');
-                      },
-                      icon: Icon(
-                        Icons.close,
-                        color: _searchTextFocusnode.hasFocus
-                            ? Colors.red
-                            : Colors.black,
-                      ),
-                    )),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Column(
+            children: [
+              Container(
+                height: 60,
+                child: TextField(
+                  focusNode: _searchTextFocusnode,
+                  controller: _searchTextController,
+                  onChanged: (value) {
+                    updateDisplayedProducts(value);
+                  },
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(
+                              color: Colors.greenAccent, width: 2)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
+                              color: Colors.greenAccent, width: 2)),
+                      hintText: 'What in your mind',
+                      prefixIcon: const Icon(Icons.search),
+                      suffix: IconButton(
+                        onPressed: () {
+                          _searchTextController!.clear();
+                          _searchTextFocusnode.unfocus();
+                          updateDisplayedProducts('');
+                        },
+                        icon: Icon(
+                          Icons.close,
+                          color: _searchTextFocusnode.hasFocus
+                              ? Colors.red
+                              : Colors.black,
+                        ),
+                      )),
+                ),
               ),
-            ),
-            Flexible(
-                child: BlocBuilder<BlocProducts, List<Map<String, dynamic>>>(
-              builder: (context, displayedProducts) {
-                return GridView.count(
-                  shrinkWrap: false,
-                  padding: const EdgeInsets.all(10),
-                  crossAxisCount: 2,
-                  childAspectRatio: size.width / (size.height * 0.53),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: displayedProducts.map((product) {
-                    return ProductWidget(
-                      name: product['name'],
-                      image: product['image'],
-                      muny: product['muny'],
-                    );
-                  }).toList(),
-                );
-              },
-            )),
-          ],
+              Flexible(
+                  child: BlocBuilder<BlocProducts, List<Map<String, dynamic>>>(
+                builder: (context, displayedProducts) {
+                  return GridView.count(
+                    shrinkWrap: false,
+                    padding: const EdgeInsets.all(10),
+                    crossAxisCount: 2,
+                    childAspectRatio: size.width / (size.height * 0.53),
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    children: displayedProducts.map((product) {
+                      return ProductWidget(
+                        name: product['name'],
+                        image: product['image'],
+                        muny: product['muny'],
+                      );
+                    }).toList(),
+                  );
+                },
+              )),
+            ],
+          ),
         ),
       ),
     );

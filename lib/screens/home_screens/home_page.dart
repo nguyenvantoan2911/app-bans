@@ -1,3 +1,4 @@
+import 'package:app/bloc/cart_cubit.dart';
 import 'package:app/inner_screens/feed_screens.dart';
 import 'package:app/screens/home_screens/home_products.dart';
 import 'package:app/services/Global_methods.dart';
@@ -9,6 +10,7 @@ import 'package:app/widgets/text_widget.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provider/provider.dart';
 
 class Home_screens extends StatefulWidget {
   const Home_screens({super.key});
@@ -28,32 +30,22 @@ class __Home_screensState extends State<Home_screens> {
     {
       'name': 'lương thực',
       'images': 'assets/cart/grains.png',
-      'giagoc': '134&',
-      'giamgia': '238&'
     },
     {
       'name': 'đồ ăn vặt',
       'images': 'assets/cart/nuts.png',
-      'giagoc': '134&',
-      'giamgia': '238&'
     },
     {
-      'name': 'ngũ vị',
+      'name': 'gia vị',
       'images': 'assets/cart/spices.png',
-      'giagoc': '134&',
-      'giamgia': '238&'
     },
     {
       'name': 'rau',
       'images': 'assets/cart/Spinach.png',
-      'giagoc': '134&',
-      'giamgia': '238&'
     },
     {
       'name': 'củ quả',
       'images': 'assets/cart/veg.png',
-      'giagoc': '134&',
-      'giamgia': '238&'
     },
   ];
   @override
@@ -109,16 +101,15 @@ class __Home_screensState extends State<Home_screens> {
               ),
               Flexible(
                 child: SizedBox(
-                  height: size.height * 0.15,
+                  height: size.height * 0.18,
                   child: ListView.builder(
                       itemCount: ListOnSale.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return OnSaleWidget(
-                            images: ListOnSale[index]['images'],
-                            name: ListOnSale[index]['name'],
-                            giagoc: ListOnSale[index]['giagoc'],
-                            giamgia: ListOnSale[index]['giamgia']);
+                          images: ListOnSale[index]['images'],
+                          name: ListOnSale[index]['name'],
+                        );
                       }),
                 ),
               ),

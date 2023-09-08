@@ -5,16 +5,15 @@ import 'package:provider/provider.dart';
 import '../provider/dark_theme_provider.dart';
 
 class CategoriesWidget extends StatelessWidget {
-  const CategoriesWidget(
+  CategoriesWidget(
       {super.key,
-      required this.imagePhone,
-      required this.namePhone,
-      required this.color,
-      required this.monny,
-      required this.mons});
-  final String imagePhone, namePhone;
-  final Color color;
-  final String monny, mons;
+      required this.image,
+      required this.name,
+      required this.gia,
+      required this.soluong}) {}
+  late String image, name;
+
+  late String gia, soluong;
 
   @override
   Widget build(BuildContext context) {
@@ -26,24 +25,23 @@ class CategoriesWidget extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            border: Border.all(
-                color: themeStates ? Colors.black : Colors.red, width: 2)),
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 241, 215, 224),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
         child: Column(children: [
           Container(
             height: _screenWith * 0.3,
             width: _screenWith * 0.3,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: AssetImage(imagePhone))),
+                image: DecorationImage(image: AssetImage(image))),
           ),
           const SizedBox(
             height: 4,
           ),
           TextWidget(
-            text: namePhone,
+            text: name,
             color: themeState.getDarkTheme ? Colors.black : Colors.black,
             texSize: FontStyle.italic,
             isTile: false,
@@ -51,29 +49,52 @@ class CategoriesWidget extends StatelessWidget {
           const SizedBox(
             height: 4,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextWidget(
-                    text: monny, color: Colors.red, texSize: FontStyle.italic),
-                Text(
-                  mons,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      decoration: TextDecoration.lineThrough),
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  const Text(
+                    'giá :',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    gia,
+                    style: const TextStyle(
+                        fontSize: 17,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Text(
+                ' đã bán${soluong}+',
+                style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-          GestureDetector(
-            onTap: () {},
-            child: const Icon(
-              Icons.shopping_cart,
-              color: Colors.red,
-            ),
-          )
+          ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 232, 234, 113)),
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_cart),
+              label: const Text(
+                'Mua Ngay',
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
+              ))
         ]),
       ),
     );
