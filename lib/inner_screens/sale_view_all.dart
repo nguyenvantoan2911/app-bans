@@ -13,7 +13,7 @@ class SaleViewAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Utils utils = Utils(context);
-    bool _isEmpty = true;
+    bool _isEmpty = false;
     Size size = utils.getscreenSize;
     return Scaffold(
       appBar: AppBar(

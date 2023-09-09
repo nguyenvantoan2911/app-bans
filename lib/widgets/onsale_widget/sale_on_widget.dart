@@ -1,7 +1,9 @@
+import 'package:app/bloc/cart_cubit.dart';
+import 'package:app/bloc/products_state.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/heart_btn.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/dark_theme_provider.dart';
@@ -25,6 +27,7 @@ class vagetableWidget extends StatefulWidget {
 }
 
 class _vagetableWidgetState extends State<vagetableWidget> {
+  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<DarkThemeProvider>(context);
@@ -32,7 +35,8 @@ class _vagetableWidgetState extends State<vagetableWidget> {
     Utils utils = Utils(context);
     double _screenWith = MediaQuery.of(context).size.width;
     Color color = utils.color;
-
+    final cartCubit = context.watch<CartCubit>();
+    final CartItems = cartCubit.state;
     return Container(
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -58,7 +62,36 @@ class _vagetableWidgetState extends State<vagetableWidget> {
                     text: widget.name,
                     color: Colors.black,
                     texSize: FontStyle.italic),
-                HeartBTN()
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        var productToAdd = ProductsState(
+                            image: widget.image,
+                            name: widget.name,
+                            gia: widget.gia);
+                        cartCubit.addToCart(productToAdd);
+                      },
+                      child: Icon(
+                        IconlyLight.bag2,
+                        size: 22,
+                        color: themeStates ? Colors.white : Colors.black,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isLiked = !isLiked;
+                        });
+                      },
+                      child: Icon(
+                        IconlyLight.heart,
+                        size: 22,
+                        color: isLiked ? Colors.red : Colors.black,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
             const SizedBox(

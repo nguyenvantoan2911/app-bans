@@ -97,9 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
           );
           try {
             await FirebaseAuth.instance.signOut();
-            // Đăng xuất thành công
           } catch (error) {
-            // Xử lý lỗi nếu có
             print('Lỗi đăng xuất: $error');
           }
           Navigator.push(context, MaterialPageRoute(builder: (context) {

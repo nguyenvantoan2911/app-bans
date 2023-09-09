@@ -101,11 +101,12 @@ class CookingSpicesScreen extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               children: List.generate(listcookingspices.length, (index) {
+                final product = listcookingspices[index];
                 return vagetableWidget(
-                  gia: listcookingspices[index]['gia'],
-                  name: listcookingspices[index]['name'],
-                  image: listcookingspices[index]['image'],
-                  soluong: listcookingspices[index]['soluong'],
+                  gia: product['gia'],
+                  name: product['name'],
+                  image: product['image'],
+                  soluong: product['soluong'],
                 );
               })),
         ));

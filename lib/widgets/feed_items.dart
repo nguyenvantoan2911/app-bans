@@ -1,6 +1,4 @@
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/heart_btn.dart';
-import 'package:app/widgets/price_widget.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -43,13 +41,11 @@ class _FeedWidgetState extends State<FeedWidget> {
               children: [
                 TextWidget(
                     text: 'Title', color: color, texSize: FontStyle.italic),
-                HeartBTN()
               ],
             ),
             SizedBox(
               height: 2,
             ),
-            const PriceWidget(),
             TextButton(
                 onPressed: () {},
                 child: TextWidget(

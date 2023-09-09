@@ -1,8 +1,10 @@
+import 'package:app/bloc/cart_cubit.dart';
+import 'package:app/bloc/products_state.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/heart_btn.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 
 class NewProduct extends StatefulWidget {
@@ -18,6 +20,7 @@ class NewProduct extends StatefulWidget {
 }
 
 class _NewProductState extends State<NewProduct> {
+  late bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<DarkThemeProvider>(context);
@@ -25,6 +28,9 @@ class _NewProductState extends State<NewProduct> {
     Utils utils = Utils(context);
     double _screenWith = MediaQuery.of(context).size.width;
     Color color = utils.color;
+    final themeState = Provider.of<DarkThemeProvider>(context);
+    bool _isdark = themeState.getDarkTheme;
+    final cartCubit = context.watch<CartCubit>();
     return Stack(
       children: [
         Container(
@@ -52,7 +58,36 @@ class _NewProductState extends State<NewProduct> {
                         text: widget.names,
                         color: Colors.black,
                         texSize: FontStyle.italic),
-                    HeartBTN()
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            var productToAdd = ProductsState(
+                                image: widget.images,
+                                name: widget.names,
+                                gia: widget.giasoc);
+                            cartCubit.addToCart(productToAdd);
+                          },
+                          child: Icon(
+                            IconlyLight.bag2,
+                            size: 22,
+                            color: _isdark ? Colors.white : Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isLiked = !isLiked;
+                            });
+                          },
+                          child: Icon(
+                            IconlyLight.heart,
+                            size: 22,
+                            color: isLiked ? Colors.red : Colors.black,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 const SizedBox(

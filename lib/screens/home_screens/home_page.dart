@@ -1,5 +1,5 @@
 import 'package:app/bloc/cart_cubit.dart';
-import 'package:app/inner_screens/feed_screens.dart';
+import 'package:app/screens/home_screens/browse_screen.dart';
 import 'package:app/screens/home_screens/home_products.dart';
 import 'package:app/services/Global_methods.dart';
 import 'package:app/services/utils.dart';
@@ -10,7 +10,6 @@ import 'package:app/widgets/text_widget.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:provider/provider.dart';
 
 class Home_screens extends StatefulWidget {
   const Home_screens({super.key});

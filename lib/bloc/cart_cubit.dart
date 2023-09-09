@@ -7,4 +7,9 @@ class CartCubit extends Cubit<List<ProductsState>> {
     state.add(product);
     emit(List.from(state));
   }
+
+  void clearToCart(ProductsState product) {
+    state.remove(product);
+    emit(List.from(state));
+  }
 }

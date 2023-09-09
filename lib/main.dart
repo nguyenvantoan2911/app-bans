@@ -1,17 +1,22 @@
+import 'package:app/bloc/cart_cubit.dart';
 import 'package:app/consts/theme_data.dart';
-import 'package:app/inner_screens/feed_screens.dart';
 import 'package:app/inner_screens/sale_view_all.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/screens/btm_bar.dart';
+import 'package:app/screens/home_screens/browse_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => CartCubit(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -51,7 +56,7 @@ class _MyAppState extends State<MyApp> {
             home: const BottomBarScreen(),
             routes: {
               SaleViewAll.RouteName: (context) => const SaleViewAll(),
-              FeedScreens.routeName: (context) => FeedScreens()
+              FeedScreens.routeName: (context) => const FeedScreens()
             },
           );
         }));

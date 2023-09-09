@@ -1,87 +1,72 @@
-import 'package:app/screens/cart/cart_widget.dart';
-import 'package:app/services/utils.dart';
-import 'package:app/widgets/text_widget.dart';
+import 'package:app/bloc/cart_cubit.dart';
+import 'package:app/provider/dark_theme_provider.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class CartScreens extends StatelessWidget {
-  const CartScreens({super.key});
+  CartScreens({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Utils utils = Utils(context);
-    Color color = utils.color;
-    final size = utils.getscreenSize;
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).canvasColor,
-          elevation: 0,
-          title: const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Cart (2)',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.red,
-              ),
-            ),
-          ),
-          actions: [
-            ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 167, 227, 235)),
-                child: Icon(
-                  Icons.delete,
-                  color: color,
-                ))
-          ]),
-      body: Column(
-        children: [
-          _CheckOut(context: context),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const CartWidget();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+    final cartCubit = context.watch<CartCubit>();
+    final cartItems = cartCubit.state;
+    final themeData = Provider.of<DarkThemeProvider>(context);
+    final themeStates = themeData.getDarkTheme;
+    return ListView.builder(
+      itemCount: cartItems.length,
+      itemBuilder: (context, index) {
+        final product = cartItems[index];
 
-  Widget _CheckOut({required BuildContext context}) {
-    Utils utils = Utils(context);
-    Color color = utils.color;
-    final size = utils.getscreenSize;
-    return Container(
-      width: double.infinity,
-      height: size.height * 0.1,
-      color: Colors.amber[100],
-      child: Row(
-        children: [
-          Material(
-            color: Colors.greenAccent,
-            borderRadius: BorderRadius.circular(10),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: TextWidget(
-                    text: 'Order Now', color: color, texSize: FontStyle.italic),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 1, right: 3, left: 3, top: 2),
+          child: ListTile(
+              tileColor: themeStates
+                  ? Color.fromARGB(255, 229, 192, 213)
+                  : Color.fromARGB(255, 153, 240, 240),
+              leading: Container(
+                height: 150,
+                width: 90,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    image: DecorationImage(image: AssetImage(product.image))),
               ),
-            ),
-          ),
-          const Spacer(),
-          TextWidget(
-              text: 'tolte : \$0.245',
-              color: Colors.red,
-              texSize: FontStyle.italic)
-        ],
-      ),
+              title: Text(
+                product.name,
+                style: const TextStyle(
+                    fontSize: 17,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text('Giá :${product.gia}',
+                  style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Text(
+                      'Chi Tiết',
+                      style: TextStyle(
+                          fontSize: 17,
+                          color: Color.fromARGB(255, 241, 78, 78),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      cartCubit.clearToCart(product);
+                    },
+                    child: const Icon(Icons.delete),
+                  ),
+                ],
+              )),
+        );
+      },
     );
   }
 }
