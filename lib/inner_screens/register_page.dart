@@ -1,6 +1,9 @@
+import 'package:app/bloc/user_cubit.dart';
+import 'package:app/bloc/user_data.dart';
 import 'package:app/inner_screens/loginstate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -100,6 +103,9 @@ class _RegisterPageState extends State<RegisterPage> {
           } catch (error) {
             print('Lỗi đăng xuất: $error');
           }
+          ;
+          UserData user = UserData(email: '', cartItems: [], userId: 'userId');
+          context.read<UserCubit>().loginUser(user);
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return LoginState();
           }));

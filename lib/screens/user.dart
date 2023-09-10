@@ -1,9 +1,12 @@
+import 'package:app/bloc/user_cubit.dart';
+import 'package:app/bloc/user_data.dart';
 import 'package:app/inner_screens/loginstate.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +22,7 @@ class _UserScreenState extends State<UserScreen> {
   TextEditingController _textEditingController = TextEditingController();
   void signUserOut() async {
     await FirebaseAuth.instance.signOut();
-    setState(() {
-      _user = null;
-    });
+    context.read<UserCubit>().logoutUser();
   }
 
   @override
@@ -48,130 +49,132 @@ class _UserScreenState extends State<UserScreen> {
         : Colors.black;
     final Utils utils = Utils(context);
     final size = utils.getscreenSize;
-    return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_user != null)
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 20, top: 13),
-                    child: const CircleAvatar(
-                      radius: 25,
-                      backgroundImage:
-                          AssetImage('assets/offres/ofres/wishlist.png'),
+    return Scaffold(body: SingleChildScrollView(
+      child: Container(child: BlocBuilder<UserCubit, UserData>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (_user != null)
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: 20, top: 13),
+                      child: const CircleAvatar(
+                        radius: 25,
+                        backgroundImage:
+                            AssetImage('assets/offres/ofres/wishlist.png'),
+                      ),
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(
-                          left: 13,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(
+                            left: 13,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Hello',
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                            ],
+                          ),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Hello',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            )
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                          ),
+                          child: Text(
+                            ' ${_user!.email}',
+                            style: TextStyle(fontSize: 16, color: color),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                        ),
+                      ],
+                    ),
+                  ],
+                )
+              else
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return LoginState();
+                          }));
+                        },
                         child: Text(
-                          ' ${_user!.email}',
-                          style: TextStyle(fontSize: 16, color: color),
-                        ),
-                      ),
-                    ],
+                          'Đăng Nhập',
+                          style: TextStyle(
+                              fontSize: 23,
+                              color: themeState.getDarkTheme
+                                  ? Colors.white
+                                  : Colors.blue),
+                        )),
                   ),
-                ],
-              )
-            else
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Center(
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return LoginState();
-                        }));
-                      },
-                      child: Text(
-                        'Đăng Nhập',
-                        style: TextStyle(
-                            fontSize: 23,
-                            color: themeState.getDarkTheme
-                                ? Colors.white
-                                : Colors.blue),
-                      )),
+                ),
+              const Divider(),
+              _listTiles(
+                  title: 'orders',
+                  icon: IconlyLight.bag,
+                  color: color,
+                  onPressed: () {}),
+              _listTiles(
+                  title: 'wishlist',
+                  icon: IconlyLight.heart,
+                  color: color,
+                  onPressed: () {}),
+              _listTiles(
+                  title: 'viewed',
+                  icon: IconlyLight.show,
+                  color: color,
+                  onPressed: () {}),
+              _listTiles(
+                  title: 'password',
+                  icon: IconlyLight.unlock,
+                  color: color,
+                  onPressed: () {}),
+              Center(
+                child: SwitchListTile(
+                  title: TextWidget(
+                      text:
+                          themeState.getDarkTheme ? 'dark mode' : 'light mode',
+                      color: color,
+                      texSize: FontStyle.normal),
+                  secondary: Icon(themeState.getDarkTheme
+                      ? Icons.dark_mode_outlined
+                      : Icons.light_mode_outlined),
+                  onChanged: (value) {
+                    themeState.setDarkTheme = value;
+                  },
+                  value: themeState.getDarkTheme,
                 ),
               ),
-            const Divider(),
-            _listTiles(
-                title: 'orders',
-                icon: IconlyLight.bag,
-                color: color,
-                onPressed: () {}),
-            _listTiles(
-                title: 'wishlist',
-                icon: IconlyLight.heart,
-                color: color,
-                onPressed: () {}),
-            _listTiles(
-                title: 'viewed',
-                icon: IconlyLight.show,
-                color: color,
-                onPressed: () {}),
-            _listTiles(
-                title: 'password',
-                icon: IconlyLight.unlock,
-                color: color,
-                onPressed: () {}),
-            Center(
-              child: SwitchListTile(
-                title: TextWidget(
-                    text: themeState.getDarkTheme ? 'dark mode' : 'light mode',
-                    color: color,
-                    texSize: FontStyle.normal),
-                secondary: Icon(themeState.getDarkTheme
-                    ? Icons.dark_mode_outlined
-                    : Icons.light_mode_outlined),
-                onChanged: (value) {
-                  themeState.setDarkTheme = value;
-                },
-                value: themeState.getDarkTheme,
-              ),
-            ),
-            _listTiles(
-                title: 'log our',
-                icon: IconlyLight.logout,
-                color: color,
-                onPressed: () {
-                  _showLogoutDialog();
-                }),
-          ],
-        ),
-      ),
+              _listTiles(
+                  title: 'log our',
+                  icon: IconlyLight.logout,
+                  color: color,
+                  onPressed: () {
+                    _showLogoutDialog();
+                  }),
+            ],
+          );
+        },
+      )),
     ));
   }
 

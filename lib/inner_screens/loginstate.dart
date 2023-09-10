@@ -1,9 +1,12 @@
+import 'package:app/bloc/user_cubit.dart';
+import 'package:app/bloc/user_data.dart';
 import 'package:app/inner_screens/register_page.dart';
 import 'package:app/screens/btm_bar.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/google_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginState extends StatefulWidget {
   const LoginState({super.key});
@@ -23,6 +26,9 @@ class _LoginStateState extends State<LoginState> {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailEditingcontroller.text,
             password: passwordEditingcontroller.text);
+        UserData user =
+            UserData(email: 'email', cartItems: [], userId: 'userId');
+        context.read<UserCubit>().loginUser(user);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const BottomBarScreen()));
       } catch (error) {
