@@ -1,6 +1,6 @@
-import 'package:app/bloc/user_cubit.dart';
-import 'package:app/bloc/user_data.dart';
-import 'package:app/inner_screens/loginstate.dart';
+import 'package:app/login_screen/bloc/login_cubit.dart';
+import 'package:app/login_screen/loginstate.dart';
+import 'package:app/login_screen/state/login_State.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
@@ -22,7 +22,7 @@ class _UserScreenState extends State<UserScreen> {
   TextEditingController _textEditingController = TextEditingController();
   void signUserOut() async {
     await FirebaseAuth.instance.signOut();
-    context.read<UserCubit>().logoutUser();
+    context.read<LoginCubit>().signOut();
   }
 
   @override
@@ -50,7 +50,7 @@ class _UserScreenState extends State<UserScreen> {
     final Utils utils = Utils(context);
     final size = utils.getscreenSize;
     return Scaffold(body: SingleChildScrollView(
-      child: Container(child: BlocBuilder<UserCubit, UserData>(
+      child: Container(child: BlocBuilder<LoginCubit, LoginStates?>(
         builder: (context, state) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +114,9 @@ class _UserScreenState extends State<UserScreen> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return LoginState();
+                            return LoginState(
+                              email: '',
+                            );
                           }));
                         },
                         child: Text(
@@ -254,34 +256,5 @@ class _UserScreenState extends State<UserScreen> {
         onPressed();
       },
     );
-  }
-
-  nameGoogle() async {
-    if (_user != null) {
-      return Text(
-        'Đã đăng nhập với: ${_user!.email}',
-        style: TextStyle(fontSize: 16),
-      );
-    } else {
-      final themeState = Provider.of<DarkThemeProvider>(context);
-      return Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Center(
-          child: TextButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return LoginState();
-                }));
-              },
-              child: Text(
-                'Đăng Nhập',
-                style: TextStyle(
-                    fontSize: 23,
-                    color:
-                        themeState.getDarkTheme ? Colors.white : Colors.blue),
-              )),
-        ),
-      );
-    }
   }
 }

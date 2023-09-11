@@ -1,6 +1,6 @@
-import 'package:app/bloc/bloc_products.dart';
+import 'package:app/browse_screen/bloc/bloc_products.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/product_widget.dart';
+import 'package:app/browse_screen/browse_widget/browse_widget.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

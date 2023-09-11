@@ -1,5 +1,5 @@
+import 'package:app/onsale_screen/onsale_screen/widgets/onsale_widget.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/onsale_widget/sale_on_widget.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 

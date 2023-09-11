@@ -1,11 +1,11 @@
-import 'package:app/bloc/cart_cubit.dart';
+import 'package:app/cart/bloc/cart_cubit.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CartScreens extends StatelessWidget {
-  CartScreens({super.key});
+class CartScreen extends StatelessWidget {
+  CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +14,30 @@ class CartScreens extends StatelessWidget {
     final themeData = Provider.of<DarkThemeProvider>(context);
     final themeStates = themeData.getDarkTheme;
     if (cartItems.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 200,
-              width: 200,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/offres/ofres/box.png'))),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Chưa thêm sản phẩm vào giỏ hàng',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: themeStates ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/offres/ofres/box.png'))),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                'Chưa thêm sản phẩm vào giỏ hàng',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: themeStates ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       );
     } else {

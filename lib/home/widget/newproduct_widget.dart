@@ -1,5 +1,5 @@
-import 'package:app/bloc/cart_cubit.dart';
-import 'package:app/bloc/products_state.dart';
+import 'package:app/cart/bloc/cart_cubit.dart';
+import 'package:app/browse_screen/state/products_state.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';

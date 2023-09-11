@@ -1,16 +1,14 @@
-import 'package:app/bloc/cart_cubit.dart';
-import 'package:app/bloc/user_cubit.dart';
-import 'package:app/consts/theme_data.dart';
-import 'package:app/inner_screens/loginstate.dart';
+import 'package:app/cart/bloc/cart_cubit.dart';
+import 'package:app/login_screen/bloc/login_cubit.dart';
+import 'package:app/services/theme_data.dart';
+import 'package:app/login_screen/loginstate.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/screens/btm_bar.dart';
-import 'package:app/screens/home_screens/browse_screen.dart';
+import 'package:app/browse_screen/browse_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
-import 'inner_screens/sale_view_all.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,8 +44,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) {
           return themeChangeProvider;
         }),
-        BlocProvider<UserCubit>(
-          create: (context) => UserCubit(),
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
         ),
         BlocProvider<CartCubit>(
           create: (context) => CartCubit(),
@@ -58,19 +56,18 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Styles.themeData(themeProvider.getDarkTheme, context),
-            home: Consumer<UserCubit>(
-              builder: (context, userCubit, child) {
-                if (userCubit.isUserLoggedIn) {
-                  return BottomBarScreen();
+            home: Consumer<LoginCubit>(
+              builder: (context, loginCubit, child) {
+                if (loginCubit.isUserLoggedIn) {
+                  return const BottomBarScreen();
                 } else {
-                  return LoginState();
+                  return const LoginState(
+                    email: '',
+                  );
                 }
               },
             ),
-            routes: {
-              SaleViewAll.RouteName: (context) => const SaleViewAll(),
-              FeedScreens.routeName: (context) => const FeedScreens()
-            },
+            routes: {FeedScreens.routeName: (context) => const FeedScreens()},
           );
         },
       ),

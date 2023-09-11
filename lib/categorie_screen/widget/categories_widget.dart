@@ -1,11 +1,11 @@
-import 'package:app/bloc/cart_cubit.dart';
-import 'package:app/bloc/products_state.dart';
+import 'package:app/cart/bloc/cart_cubit.dart';
+import 'package:app/browse_screen/state/products_state.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
-import '../provider/dark_theme_provider.dart';
+import '../../provider/dark_theme_provider.dart';
 
 class CategoriesWidget extends StatefulWidget {
   CategoriesWidget(

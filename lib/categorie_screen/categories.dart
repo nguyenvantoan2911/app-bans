@@ -1,4 +1,4 @@
-import 'package:app/widgets/categories_widget.dart';
+import 'package:app/categorie_screen/widget/categories_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {

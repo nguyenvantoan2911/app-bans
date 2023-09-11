@@ -1,7 +1,7 @@
-import 'package:app/screens/cart.dart';
-import 'package:app/screens/categories.dart';
-import 'package:app/screens/home_screens/home_page.dart';
-import 'package:app/screens/user.dart';
+import 'package:app/cart/cart_screens.dart';
+import 'package:app/home/home_page.dart';
+import 'package:app/categorie_screen/categories.dart';
+import 'package:app/user_screen/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   final List<Map<String, dynamic>> _pages = [
     {'page': const Home_screens(), 'tile': 'Trang Chủ'},
     {'page': CategoriesScreen(), 'tile': 'CategoriesScreen'},
-    {'page': const CartScreen(), 'tile': 'Giỏ hàng'},
+    {'page': CartScreen(), 'tile': 'Giỏ hàng'},
     {'page': const UserScreen(), 'tile': 'UserScreen'},
   ];
   void _selectedPage(int index) {

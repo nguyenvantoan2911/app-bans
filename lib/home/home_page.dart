@@ -1,11 +1,8 @@
-import 'package:app/bloc/cart_cubit.dart';
-import 'package:app/screens/home_screens/browse_screen.dart';
-import 'package:app/screens/home_screens/home_products.dart';
+import 'package:app/home/widget/newproduct_widget.dart';
+import 'package:app/home/widget/onsale_widget.dart';
+import 'package:app/browse_screen/browse_screen.dart';
 import 'package:app/services/Global_methods.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/inner_screens/sale_view_all.dart';
-
-import 'package:app/widgets/on_sale_widget.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +44,32 @@ class __Home_screensState extends State<Home_screens> {
       'images': 'assets/cart/veg.png',
     },
   ];
+  List<Map<String, dynamic>> user = [
+    {
+      'images': 'assets/vegetable list/rau. /rau_muong-removebg.png',
+      'names': 'Rau muống',
+      'gia': '1000\đ',
+      'giasoc': '500\đ'
+    },
+    {
+      'images': 'assets/vegetable list/rau. /rau_xa_nach-removebg-preview.png',
+      'names': 'Rau xà nách',
+      'gia': '500\đ',
+      'giasoc': '300\đ'
+    },
+    {
+      'images': 'assets/vegetable list/rau. /tải_xuống-removebg-preview.png',
+      'names': 'Rau bắp cải',
+      'gia': '2000\đ',
+      'giasoc': '1500\đ'
+    },
+    {
+      'images': 'assets/vegetable list/rau. /supno-removebg-preview.png',
+      'names': 'Rau súp nơ',
+      'gia': '4000\đ',
+      'giasoc': '3000\đ'
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     final Utils utils = Utils(context);
@@ -74,10 +97,7 @@ class __Home_screensState extends State<Home_screens> {
             ),
           ),
           TextButton(
-              onPressed: () {
-                GlobalMethods.navigateTo(
-                    context: context, routeName: SaleViewAll.RouteName);
-              },
+              onPressed: () {},
               child: TextWidget(
                   text: 'View All',
                   color: themeState
@@ -139,7 +159,22 @@ class __Home_screensState extends State<Home_screens> {
               ],
             ),
           ),
-          const HomeProducts()
+          Expanded(
+            child: GridView.count(
+                shrinkWrap: false,
+                padding: const EdgeInsets.all(10),
+                crossAxisCount: 2,
+                childAspectRatio: size.width / (size.height * 0.53),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: List.generate(user.length, (index) {
+                  return NewProduct(
+                      images: user[index]['images'],
+                      names: user[index]['names'],
+                      gia: user[index]['gia'],
+                      giasoc: user[index]['giasoc']);
+                })),
+          )
         ],
       ),
     );

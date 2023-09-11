@@ -1,7 +1,7 @@
-import 'package:app/inner_screens/on_sale/cooking_spices_screen.dart';
-import 'package:app/inner_screens/on_sale/food.dart';
-import 'package:app/inner_screens/on_sale/fruitscreen.dart';
-import 'package:app/inner_screens/on_sale/vagetable_screen.dart';
+import 'package:app/onsale_screen/onsale_screen/cooking_page.dart';
+import 'package:app/onsale_screen/onsale_screen/food_page.dart';
+import 'package:app/onsale_screen/onsale_screen/fruit_page.dart';
+import 'package:app/onsale_screen/onsale_screen/vagetable_page.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
