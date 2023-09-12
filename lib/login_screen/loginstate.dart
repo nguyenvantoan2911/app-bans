@@ -1,4 +1,4 @@
-import 'package:app/inner_screens/register_page.dart';
+import 'package:app/register_screen/register_page.dart';
 import 'package:app/login_screen/bloc/login_cubit.dart';
 import 'package:app/login_screen/state/login_State.dart';
 import 'package:app/services/utils.dart';
@@ -24,6 +24,7 @@ class _LoginStateState extends State<LoginState> {
     Color color = utils.color;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color.fromARGB(255, 20, 235, 220),
           title: const Text(
             'Đăng Nhập',
@@ -165,7 +166,7 @@ class _LoginStateState extends State<LoginState> {
                             onPressed: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
-                                return const RegisterPage();
+                                return RegisterPage();
                               }));
                             },
                             child: const Text(

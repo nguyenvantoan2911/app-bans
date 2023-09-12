@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginStates?> {
 
           emit(LoginStates(email: user.email ?? '', password: ''));
         } else {
+          isUserLoggedIn = false;
           emit(null);
         }
       });

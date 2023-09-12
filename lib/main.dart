@@ -1,5 +1,7 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
 import 'package:app/login_screen/bloc/login_cubit.dart';
+import 'package:app/register_screen/bloc/register_cubit.dart';
+import 'package:app/register_screen/register_page.dart';
 import 'package:app/services/theme_data.dart';
 import 'package:app/login_screen/loginstate.dart';
 import 'package:app/provider/dark_theme_provider.dart';
@@ -47,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<LoginCubit>(
           create: (context) => LoginCubit(),
         ),
+        BlocProvider<RegisterCubit>(create: (context) => RegisterCubit()),
         BlocProvider<CartCubit>(
           create: (context) => CartCubit(),
         ),
@@ -66,6 +69,7 @@ class _MyAppState extends State<MyApp> {
                   );
                 }
               },
+              child: RegisterPage(),
             ),
             routes: {FeedScreens.routeName: (context) => const FeedScreens()},
           );
