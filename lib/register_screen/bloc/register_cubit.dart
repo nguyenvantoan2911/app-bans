@@ -2,29 +2,58 @@ import 'package:app/register_screen/state/register_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegisterCubit extends Cubit<RegisterState?> {
+class RegisterCubit extends Cubit<RegisterState> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  RegisterCubit() : super(null);
-  Future<void> signUp(
-      String email, String password, String confirmPassword) async {
-    try {
-      if (password != confirmPassword) {
-        emit(RegisterState.error('Mật khẩu không khớp'));
-      } else if (password.length < 6) {
-        emit(RegisterState.error('Mật khẩu phải ít nhất 6 kí tự'));
-      } else if (!email.endsWith('@gmail.com')) {
-        emit(RegisterState.error('Email phải sử dụng tên miền @gmail.com'));
-      } else {
-        final userCredential = await _firebaseAuth
-            .createUserWithEmailAndPassword(email: email, password: password);
+  RegisterCubit()
+      : super(RegisterState(
+            email: '', password: '', confirmPassword: '', error: ''));
+  final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+  langnghe(String value, String name) {
+    if (name == 'email') {
+      state.email = value;
+    } else if (name == 'password') {
+      state.password = value;
+    } else if (name == 'confirmPassword') {
+      state.confirmPassword = value;
+    }
+    hiennut();
+  }
 
-        emit(RegisterState.success());
+  void hiennut() {
+    if (state.email != '' &&
+        state.password != '' &&
+        state.confirmPassword != '') {
+      emit(state.copyWith(isInputValid: true));
+    } else {
+      emit(state.copyWith(isInputValid: false));
+    }
+  }
+
+  Future<void> signUp() async {
+    try {
+      if (state.password != state.confirmPassword) {
+        emit(state.copyWith(error: 'mật khẩu không khớp'));
+      } else if (state.password.length < 6) {
+        emit(state.copyWith(error: 'Mật khẩu phải ít nhất 6 kí tự'));
+      } else if (!emailRegex.hasMatch(state.email)) {
+        emit(state.copyWith(error: 'Email phải sử dụng tên miền @gmail.com'));
+      } else {
+        final userCredential =
+            await _firebaseAuth.createUserWithEmailAndPassword(
+                email: state.email, password: state.password);
+
+        emit(state.copyWith(
+            error: '',
+            email: state.email,
+            password: state.password,
+            confirmPassword: state.confirmPassword,
+            isRegistrySuccess: true));
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(RegisterState.error('Mật khẩu quá yếu'));
+        emit(state.copyWith(error: 'Mật khẩu quá yếu'));
       } else if (e.code == 'email-already-in-use') {
-        emit(RegisterState.error('Tài khoản đã tồn tại'));
+        emit(state.copyWith(error: 'Tài khoản đã tồn tại'));
       }
     }
   }

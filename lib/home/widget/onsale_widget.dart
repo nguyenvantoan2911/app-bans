@@ -3,7 +3,6 @@ import 'package:app/onsale_screen/onsale_screen/food_page.dart';
 import 'package:app/onsale_screen/onsale_screen/fruit_page.dart';
 import 'package:app/onsale_screen/onsale_screen/vagetable_page.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -35,80 +34,78 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
         child: InkWell(
           onTap: () {},
           child: Column(children: [
-            Container(
-              width: size.width * 0.4,
-              height: size.height * 0.165,
+            SizedBox(
+              width: size.width * 0.48,
+              height: size.height * 0.23,
               child: Column(
                 children: [
                   GestureDetector(
                       onTap: () {},
-                      child: Container(
-                        height: size.height * 0.08,
-                        width: size.width * 0.35,
+                      child: SizedBox(
+                        height: size.height * 0.13,
+                        width: size.width * 0.4,
                         child: Image.asset(widget.images),
                       )),
-                  const SizedBox(
-                    height: 5,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextWidget(
-                          text: widget.name,
-                          color: Colors.black,
-                          texSize: FontStyle.italic),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Icon(
-                              IconlyLight.bag2,
-                              size: 22,
-                              color: Colors.black,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isLiked = !isLiked;
-                              });
-                            },
-                            child: Icon(
-                              IconlyLight.heart,
-                              size: 22,
-                              color: isLiked ? Colors.red : Colors.black,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        widget.name,
+                        style: const TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isLiked = !isLiked;
+                          });
+                        },
+                        child: Icon(
+                          IconlyLight.heart,
+                          size: 27,
+                          color: isLiked ? Colors.red : Colors.black,
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(
-                    height: 4.2,
+                    height: 3,
                   ),
                   TextButton(
+                      style: TextButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            side: BorderSide(color: Colors.transparent),
+                          ),
+                          backgroundColor:
+                              const Color.fromARGB(255, 164, 70, 128)),
                       onPressed: () {
-                        if (widget.name == 'lương thực') {
+                        if (widget.name == 'Food') {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return FoodSecreen();
                           }));
-                        } else if (widget.name == 'đồ ăn vặt') {
+                        } else if (widget.name == 'Snacks') {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return VagetableScreen();
                           }));
-                        } else if (widget.name == 'gia vị') {
+                        } else if (widget.name == 'Spices') {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return CookingSpicesScreen();
                           }));
-                        } else if (widget.name == 'rau') {
+                        } else if (widget.name == 'Vegetable') {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return VagetableScreen();
                           }));
-                        } else if (widget.name == 'củ quả') {
+                        } else if (widget.name == 'Fruit') {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return FruitScreen();
@@ -116,11 +113,11 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                         }
                       },
                       child: const Text(
-                        'Mua Ngay',
+                        'See Details',
                         style: TextStyle(
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 191, 32, 227)),
+                            color: Colors.white),
                       ))
                 ],
               ),

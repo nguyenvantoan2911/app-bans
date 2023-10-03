@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                   );
                 }
               },
-              child: RegisterPage(),
+              child: const RegisterPage(),
             ),
             routes: {FeedScreens.routeName: (context) => const FeedScreens()},
           );

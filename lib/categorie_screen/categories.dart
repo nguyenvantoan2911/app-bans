@@ -8,127 +8,127 @@ class CategoriesScreen extends StatelessWidget {
     {
       'image': 'assets/cooking_spices/bột_nêm-removebg-preview.png',
       'name': 'Bột Nêm',
-      'gia': '30000đ',
+      'gia': '30000',
       'soluong': '2,3k'
     },
     {
       'image': 'assets/cooking_spices/bột_ớt-removebg-preview.png',
       'name': 'Ớt Bột',
-      'gia': '22000đ',
+      'gia': '22000',
       'soluong': '300'
     },
     {
       'image': 'assets/cooking_spices/mam_cá_sinh-removebg-preview.png',
       'name': 'Mắm Cá Sinh',
-      'gia': '15000đ',
+      'gia': '15000',
       'soluong': '2k'
     },
     {
       'image': 'assets/cooking_spices/mayonnaise-removebg-preview.png',
       'name': 'Mayonnaise',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '1,1k'
     },
     {
       'image': 'assets/cooking_spices/mắn_nam_ngư-removebg-preview.png',
       'name': 'Mắm Nam Ngư',
-      'gia': '27000đ',
+      'gia': '27000',
       'soluong': '1k'
     },
     {
       'image': 'assets/cooking_spices/mắn_tôm-removebg-preview.png',
       'name': 'Mắm Tôm',
-      'gia': '15000đ',
+      'gia': '15000',
       'soluong': '200'
     },
     {
       'image': 'assets/cooking_spices/mì_chính-removebg-preview.png',
       'name': 'Mì Chính',
-      'gia': '21000đ',
+      'gia': '21000',
       'soluong': '2,5k'
     },
     {
       'image': 'assets/cooking_spices/muoi-removebg-preview.png',
       'name': 'Muối I Ốt',
-      'gia': '3000đ',
+      'gia': '3000',
       'soluong': '370'
     },
     {
       'image': 'assets/cooking_spices/muoihaohao-removebg-preview.png',
       'name': 'Muối Hảo Hảo',
-      'gia': '10000đ',
+      'gia': '10000',
       'soluong': '2,1k'
     },
     {
       'image': 'assets/cooking_spices/ngũ_vị_hương-removebg-preview.png',
       'name': 'Ngũ Vị Hương',
-      'gia': '1000đ',
+      'gia': '1000',
       'soluong': '400'
     },
     {
       'image': 'assets/cooking_spices/tương_bần-removebg-preview.png',
       'name': 'Tương Bần',
-      'gia': '11000đ',
+      'gia': '11000',
       'soluong': '1k'
     },
     {
       'image': 'assets/cooking_spices/tương_cà-removebg-preview.png',
       'name': 'Tương cà',
-      'gia': '14000đ',
+      'gia': '14000',
       'soluong': '3,4k'
     },
     {
       'image': 'assets/food/lương thực/gạo_trắng-removebg-preview.png',
       'name': 'Gạo Trắng',
-      'gia': '50000đ',
+      'gia': '50000',
       'soluong': '10k'
     },
     {
       'image': 'assets/food/lương thực/khoai_lang-removebg-preview.png',
       'name': 'Khoai Lang',
-      'gia': '25000đ',
+      'gia': '25000',
       'soluong': '6k'
     },
     {
       'image': 'assets/food/lương thực/khoai_môn-removebg-preview.png',
       'name': 'Khoai Môn',
-      'gia': '15000đ',
+      'gia': '15000',
       'soluong': '2,1k'
     },
     {
       'image': 'assets/food/lương thực/khoai_tây-removebg-preview.png',
       'name': 'Khoai Tây',
-      'gia': '18000đ',
+      'gia': '18000',
       'soluong': '1,2k'
     },
     {
       'image': 'assets/food/lương thực/ngô-removebg-preview.png',
       'name': 'Ngô',
-      'gia': '30000đ',
+      'gia': '30000',
       'soluong': '1,8k'
     },
     {
       'image': 'assets/fruit/củ/cà_rốt-removebg-preview.png',
       'name': 'Củ Cà Rốt',
-      'gia': '15000đ',
+      'gia': '15000',
       'soluong': '2k'
     },
     {
       'image': 'assets/fruit/củ/cà_tím-removebg-preview.png',
       'name': 'Quả cà tím',
-      'gia': '21000đ',
+      'gia': '21000',
       'soluong': '1k'
     },
     {
       'image': 'assets/fruit/củ/chôm_chôm-removebg-preview.png',
-      'name': 'Quả chôm chôm',
+      'name': 'chôm chôm',
       'gia': '40000',
       'soluong': '2k'
     },
     {
       'image': 'assets/fruit/củ/củ_cải-removebg-preview.png',
       'name': 'Củ cải đường',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '400'
     },
     {
@@ -140,31 +140,31 @@ class CategoriesScreen extends StatelessWidget {
     {
       'image': 'assets/fruit/củ/củ_hành-removebg-preview.png',
       'name': 'Củ hành tây',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '800'
     },
     {
       'image': 'assets/fruit/củ/đào-removebg-preview.png',
       'name': 'Quả đào',
-      'gia': '25000đ',
+      'gia': '25000',
       'soluong': '2,2k'
     },
     {
       'image': 'assets/fruit/củ/mận-removebg-preview.png',
       'name': 'Quả mận',
-      'gia': '30000đ',
+      'gia': '30000',
       'soluong': '900'
     },
     {
       'image': 'assets/fruit/củ/mít-removebg-preview.png',
       'name': 'Quả mít',
-      'gia': '9000đ',
+      'gia': '9000',
       'soluong': '1,4k'
     },
     {
       'image': 'assets/fruit/củ/quả_táo-removebg-preview.png',
       'name': 'Quả táo',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '400'
     },
     {
@@ -176,7 +176,7 @@ class CategoriesScreen extends StatelessWidget {
     {
       'image': 'assets/fruit/củ/tỏi-removebg-preview.png',
       'name': 'Củ tỏi',
-      'gia': '14000đ',
+      'gia': '14000',
       'soluong': '1,6k'
     },
     {
@@ -188,67 +188,67 @@ class CategoriesScreen extends StatelessWidget {
     {
       'image': 'assets/food/lương thực/sắn_ta-removebg-preview.png',
       'name': 'Sắn',
-      'gia': '23000đ',
+      'gia': '23000',
       'soluong': '4k'
     },
     {
       'image': 'assets/vegetable list/rau. /cải_canh-removebg-preview.png',
       'name': 'Rau Cải Canh',
-      'gia': '2000đ',
+      'gia': '2000',
       'soluong': '2,3k'
     },
     {
       'image': 'assets/vegetable list/rau. /cải_thìa-removebg-preview.png',
       'name': 'Rau Cải Thìa',
-      'gia': '2500đ',
+      'gia': '2500',
       'soluong': '1k'
     },
     {
       'image': 'assets/vegetable list/rau. /mướp_đắng-removebg-preview.png',
-      'name': 'Rau Mướp Đắng',
-      'gia': '1500đ',
+      'name': 'Mướp Đắng',
+      'gia': '1500',
       'soluong': '2,1k'
     },
     {
       'image': 'assets/vegetable list/rau. /rau_chân_vịt-removebg-preview.png',
       'name': 'Rau Chân Vịt',
-      'gia': '1000đ',
+      'gia': '1000',
       'soluong': '1,2k'
     },
     {
       'image': 'assets/vegetable list/rau. /rau_đay-removebg-preview.png',
       'name': 'Rau Đay',
-      'gia': '2150đ',
+      'gia': '2150',
       'soluong': '1,6k'
     },
     {
       'image': 'assets/vegetable list/rau. /rau_muong-removebg.png',
       'name': 'Rau Muống',
-      'gia': '1000đ',
+      'gia': '1000',
       'soluong': '500'
     },
     {
       'image': 'assets/vegetable list/rau. /rau_xa_nach-removebg-preview.png',
       'name': 'Rau Xà Nách',
-      'gia': '500đ',
+      'gia': '500',
       'soluong': '800'
     },
     {
       'image': 'assets/vegetable list/rau. /su_hào-removebg-preview.png',
       'name': 'Rau Xu Hào',
-      'gia': '5000đ',
+      'gia': '5000',
       'soluong': '1,4k'
     },
     {
       'image': 'assets/vegetable list/rau. /supno-removebg-preview.png',
       'name': 'Rau Súp Nơ',
-      'gia': '4000đ',
+      'gia': '4000',
       'soluong': '2,2k'
     },
     {
       'image': 'assets/vegetable list/rau. /tải_xuống-removebg-preview.png',
       'name': 'Rau Ngót',
-      'gia': '3000đ',
+      'gia': '3000',
       'soluong': '3k'
     },
   ];

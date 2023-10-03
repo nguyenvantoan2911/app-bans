@@ -9,25 +9,25 @@ class FruitScreen extends StatelessWidget {
     {
       'image': 'assets/fruit/củ/cà_rốt-removebg-preview.png',
       'name': 'Củ Cà Rốt',
-      'gia': '15000đ',
+      'gia': '15000',
       'soluong': '2k'
     },
     {
       'image': 'assets/fruit/củ/cà_tím-removebg-preview.png',
       'name': 'Quả cà tím',
-      'gia': '21000đ',
+      'gia': '21000',
       'soluong': '1k'
     },
     {
       'image': 'assets/fruit/củ/chôm_chôm-removebg-preview.png',
-      'name': 'Quả chôm chôm',
+      'name': 'chôm chôm',
       'gia': '40000',
       'soluong': '2k'
     },
     {
       'image': 'assets/fruit/củ/củ_cải-removebg-preview.png',
       'name': 'Củ cải đường',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '400'
     },
     {
@@ -39,31 +39,31 @@ class FruitScreen extends StatelessWidget {
     {
       'image': 'assets/fruit/củ/củ_hành-removebg-preview.png',
       'name': 'Củ hành tây',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '800'
     },
     {
       'image': 'assets/fruit/củ/đào-removebg-preview.png',
       'name': 'Quả đào',
-      'gia': '25000đ',
+      'gia': '25000',
       'soluong': '2,2k'
     },
     {
       'image': 'assets/fruit/củ/mận-removebg-preview.png',
       'name': 'Quả mận',
-      'gia': '30000đ',
+      'gia': '30000',
       'soluong': '900'
     },
     {
       'image': 'assets/fruit/củ/mít-removebg-preview.png',
       'name': 'Quả mít',
-      'gia': '9000đ',
+      'gia': '9000',
       'soluong': '1,4k'
     },
     {
       'image': 'assets/fruit/củ/quả_táo-removebg-preview.png',
       'name': 'Quả táo',
-      'gia': '13000đ',
+      'gia': '13000',
       'soluong': '400'
     },
     {
@@ -75,7 +75,7 @@ class FruitScreen extends StatelessWidget {
     {
       'image': 'assets/fruit/củ/tỏi-removebg-preview.png',
       'name': 'Củ tỏi',
-      'gia': '14000đ',
+      'gia': '14000',
       'soluong': '1,6k'
     },
     {
@@ -92,16 +92,16 @@ class FruitScreen extends StatelessWidget {
     Size size = utils.getscreenSize;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 245, 158, 152),
+          backgroundColor: const Color.fromARGB(255, 245, 158, 152),
           title: TextWidget(
               text: 'Fruit', color: Colors.black, texSize: FontStyle.normal),
         ),
         body: Container(
           child: GridView.count(
               shrinkWrap: false,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               crossAxisCount: 2,
-              childAspectRatio: size.width / (size.height * 0.52),
+              childAspectRatio: size.width / (size.height * 0.5),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               children: List.generate(listfruit.length, (index) {

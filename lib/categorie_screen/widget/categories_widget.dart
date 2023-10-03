@@ -1,5 +1,5 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
-import 'package:app/browse_screen/state/products_state.dart';
+import 'package:app/cart/state/products_state.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,11 +29,10 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
     final themeStates = themeState.getDarkTheme;
-    double _screenWith = MediaQuery.of(context).size.width;
+    double screenWith = MediaQuery.of(context).size.width;
     Utils utils = Utils(context);
     final size = utils.getscreenSize;
-
-    bool _isdark = themeState.getDarkTheme;
+    bool isdark = themeState.getDarkTheme;
     final cartCubit = context.watch<CartCubit>();
     return InkWell(
       onTap: () {},
@@ -44,8 +43,8 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
         ),
         child: Column(children: [
           Container(
-            height: _screenWith * 0.3,
-            width: _screenWith * 0.3,
+            height: screenWith * 0.28,
+            width: screenWith * 0.3,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(image: AssetImage(widget.image))),
@@ -67,9 +66,10 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                   GestureDetector(
                     onTap: () {
                       var productToAdd = ProductsState(
-                          image: widget.image,
-                          name: widget.name,
-                          gia: widget.gia);
+                        image: widget.image,
+                        name: widget.name,
+                        gia: widget.gia,
+                      );
                       cartCubit.addToCart(productToAdd);
                     },
                     child: const Icon(
@@ -103,20 +103,17 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SizedBox(
-                    width: 4,
-                  ),
                   const Text(
-                    'giá :',
+                    'Giá :',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    widget.gia,
+                    '${widget.gia}đ',
                     style: const TextStyle(
-                        fontSize: 17,
+                        fontSize: 16,
                         color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
@@ -125,7 +122,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
               Text(
                 ' đã bán${widget.soluong}+',
                 style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: Colors.black,
                     fontWeight: FontWeight.bold),
               ),
@@ -133,7 +130,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
           ),
           ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 232, 234, 113)),
+                  backgroundColor: const Color.fromARGB(255, 232, 234, 113)),
               onPressed: () {},
               icon: const Icon(Icons.shopping_cart),
               label: const Text(

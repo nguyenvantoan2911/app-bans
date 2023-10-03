@@ -1,8 +1,7 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
-import 'package:app/browse_screen/state/products_state.dart';
+import 'package:app/cart/state/products_state.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
-import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
@@ -32,10 +31,9 @@ class _vagetableWidgetState extends State<vagetableWidget> {
     final themeData = Provider.of<DarkThemeProvider>(context);
     final themeStates = themeData.getDarkTheme;
     Utils utils = Utils(context);
-    double _screenWith = MediaQuery.of(context).size.width;
+    double screenWith = MediaQuery.of(context).size.width;
     Color color = utils.color;
     final cartCubit = context.watch<CartCubit>();
-    final CartItems = cartCubit.state;
     return Container(
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -48,8 +46,8 @@ class _vagetableWidgetState extends State<vagetableWidget> {
         child: Column(
           children: [
             Container(
-              height: _screenWith * 0.3,
-              width: _screenWith * 0.3,
+              height: screenWith * 0.25,
+              width: screenWith * 0.25,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(image: AssetImage(widget.image))),
@@ -57,18 +55,22 @@ class _vagetableWidgetState extends State<vagetableWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextWidget(
-                    text: widget.name,
-                    color: Colors.black,
-                    texSize: FontStyle.italic),
+                Text(
+                  widget.name,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
                 Row(
                   children: [
                     GestureDetector(
                       onTap: () {
                         var productToAdd = ProductsState(
-                            image: widget.image,
-                            name: widget.name,
-                            gia: widget.gia);
+                          image: widget.image,
+                          name: widget.name,
+                          gia: widget.gia,
+                        );
                         cartCubit.addToCart(productToAdd);
                       },
                       child: Icon(
@@ -98,24 +100,15 @@ class _vagetableWidgetState extends State<vagetableWidget> {
             ),
             Container(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  TextWidget(
-                      text: 'Giá:',
-                      color: Colors.black,
-                      texSize: FontStyle.normal),
-                  const SizedBox(
-                    width: 5,
-                  ),
                   Text(
-                    widget.gia,
+                    'Giá: ${widget.gia}đ',
                     style: const TextStyle(
+                      fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Color.fromARGB(255, 247, 59, 46),
+                      color: Colors.black,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
                   ),
                   Text(
                     'đã bán${widget.soluong}+',
@@ -127,12 +120,24 @@ class _vagetableWidgetState extends State<vagetableWidget> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             TextButton(
+                style: TextButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      side: BorderSide(color: Colors.transparent),
+                    ),
+                    backgroundColor: const Color.fromARGB(255, 164, 70, 128)),
                 onPressed: () {},
-                child: TextWidget(
-                    text: 'Mua ngay',
-                    color: Color.fromARGB(255, 82, 143, 235),
-                    texSize: FontStyle.italic))
+                child: const Text(
+                  'Mua Ngay',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ))
           ],
         ),
       ),

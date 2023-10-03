@@ -2,42 +2,51 @@ import 'package:app/login_screen/state/login_State.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginCubit extends Cubit<LoginStates?> {
+class LoginCubit extends Cubit<LoginStates> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  LoginCubit() : super(null);
+  LoginCubit() : super(LoginStates(email: '', password: '', error: ''));
   bool isUserLoggedIn = false;
-  void signIn(String email, String password) async {
+
+  void langnghe(String value, String name) {
+    if (name == 'email') {
+      state.email = value;
+    } else if (name == 'password') {
+      state.password = value;
+    }
+    hiennut();
+  }
+
+  hiennut() {
+    if (state.email != '' && state.password != '') {
+      emit(state.copyWith(isInputValid: true));
+    } else {
+      emit(state.copyWith(isInputValid: false));
+    }
+  }
+
+  void signIn() async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+        email: state.email,
+        password: state.password,
       );
+      final user = userCredential.user;
 
-      _firebaseAuth.authStateChanges().listen((User? user) {
-        if (user != null) {
-          isUserLoggedIn = true;
-
-          emit(LoginStates(email: user.email ?? '', password: ''));
-        } else {
-          isUserLoggedIn = false;
-          emit(null);
-        }
-      });
+      if (user != null) {
+        isUserLoggedIn = true;
+        emit(state.copyWith(email: state.email, password: '', error: ''));
+      } else {
+        isUserLoggedIn = false;
+        emit(LoginStates(email: '', password: '', error: ''));
+      }
     } catch (error) {
       if (error is FirebaseAuthException) {
         if (error.code == 'user-not-found') {
-          emit(LoginStates(
-              email: email,
-              password: password,
-              error: 'Tài khoản không tồn tại'));
+          emit(state.copyWith(error: 'Tài khoản không tồn tại'));
         } else if (error.code == 'wrong-password') {
-          emit(LoginStates(
-              email: email,
-              password: password,
-              error: 'Sai tài khoản hoặc mật khẩu.'));
+          emit(state.copyWith(error: 'sai tài khoản hoặc mật khẩu.'));
         } else {
-          emit(LoginStates(
-              email: email, password: password, error: 'Lỗi không xác định.'));
+          emit(state.copyWith(error: 'Lỗi không xác định.'));
         }
       }
     }

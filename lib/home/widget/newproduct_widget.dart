@@ -1,5 +1,5 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
-import 'package:app/browse_screen/state/products_state.dart';
+import 'package:app/cart/state/products_state.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
 
 class NewProduct extends StatefulWidget {
-  NewProduct(
+  const NewProduct(
       {super.key,
       required this.images,
       required this.names,
@@ -26,10 +26,10 @@ class _NewProductState extends State<NewProduct> {
     final themeData = Provider.of<DarkThemeProvider>(context);
     final themeStates = themeData.getDarkTheme;
     Utils utils = Utils(context);
-    double _screenWith = MediaQuery.of(context).size.width;
+    double screenWith = MediaQuery.of(context).size.width;
     Color color = utils.color;
     final themeState = Provider.of<DarkThemeProvider>(context);
-    bool _isdark = themeState.getDarkTheme;
+    bool isdark = themeState.getDarkTheme;
     final cartCubit = context.watch<CartCubit>();
     return Stack(
       children: [
@@ -45,8 +45,8 @@ class _NewProductState extends State<NewProduct> {
             child: Column(
               children: [
                 Container(
-                  height: _screenWith * 0.3,
-                  width: _screenWith * 0.3,
+                  height: screenWith * 0.27,
+                  width: screenWith * 0.35,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(image: AssetImage(widget.images))),
@@ -63,15 +63,16 @@ class _NewProductState extends State<NewProduct> {
                         GestureDetector(
                           onTap: () {
                             var productToAdd = ProductsState(
-                                image: widget.images,
-                                name: widget.names,
-                                gia: widget.giasoc);
+                              image: widget.images,
+                              name: widget.names,
+                              gia: widget.giasoc,
+                            );
                             cartCubit.addToCart(productToAdd);
                           },
                           child: Icon(
                             IconlyLight.bag2,
                             size: 22,
-                            color: _isdark ? Colors.white : Colors.black,
+                            color: isdark ? Colors.white : Colors.black,
                           ),
                         ),
                         GestureDetector(
@@ -105,7 +106,7 @@ class _NewProductState extends State<NewProduct> {
                         width: 5,
                       ),
                       TextWidget(
-                          text: widget.giasoc,
+                          text: '${widget.giasoc}đ',
                           color: Colors.red,
                           texSize: FontStyle.normal),
                       const SizedBox(
@@ -134,8 +135,8 @@ class _NewProductState extends State<NewProduct> {
         Positioned(
             top: -10,
             right: -17,
-            child: Container(
-              height: 85,
+            child: SizedBox(
+              height: 80,
               width: 100,
               child: Image.asset(
                   'assets/offres/ofres/tải_xuống-removebg-preview.png'),

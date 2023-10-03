@@ -1,3 +1,4 @@
+import 'package:app/cart/cart_screens.dart';
 import 'package:app/login_screen/bloc/login_cubit.dart';
 import 'package:app/login_screen/loginstate.dart';
 import 'package:app/login_screen/state/login_State.dart';
@@ -19,7 +20,7 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   User? _user;
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   void signUserOut() async {
     await FirebaseAuth.instance.signOut();
     context.read<LoginCubit>().signOut();
@@ -45,7 +46,7 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
     final Color color = themeState.getDarkTheme
-        ? Color.fromARGB(255, 248, 248, 248)
+        ? const Color.fromARGB(255, 248, 248, 248)
         : Colors.black;
     final Utils utils = Utils(context);
     final size = utils.getscreenSize;
@@ -114,7 +115,7 @@ class _UserScreenState extends State<UserScreen> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return LoginState(
+                            return const LoginState(
                               email: '',
                             );
                           }));
@@ -134,7 +135,12 @@ class _UserScreenState extends State<UserScreen> {
                   title: 'orders',
                   icon: IconlyLight.bag,
                   color: color,
-                  onPressed: () {}),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const CartScreen();
+                    }));
+                  }),
               _listTiles(
                   title: 'wishlist',
                   icon: IconlyLight.heart,

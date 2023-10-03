@@ -1,10 +1,21 @@
 class LoginStates {
-  final String email;
-  final String password;
-  final String? error;
+  late String email;
+  late String password;
+  late String error;
+  bool isInputValid;
   LoginStates({
+    this.isInputValid = false,
     required this.email,
     required this.password,
-    this.error,
+    required this.error,
   });
+
+  LoginStates copyWith(
+      {String? email, String? password, String? error, bool? isInputValid}) {
+    return LoginStates(
+        isInputValid: isInputValid ?? this.isInputValid,
+        email: email ?? this.email,
+        password: password ?? this.password,
+        error: error ?? this.error);
+  }
 }

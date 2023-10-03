@@ -24,23 +24,23 @@ class __Home_screensState extends State<Home_screens> {
   ];
   List<Map<String, dynamic>> ListOnSale = [
     {
-      'name': 'lương thực',
+      'name': 'Food',
       'images': 'assets/cart/grains.png',
     },
     {
-      'name': 'đồ ăn vặt',
+      'name': 'Snacks',
       'images': 'assets/cart/nuts.png',
     },
     {
-      'name': 'gia vị',
+      'name': 'Spices',
       'images': 'assets/cart/spices.png',
     },
     {
-      'name': 'rau',
+      'name': 'Vegetable',
       'images': 'assets/cart/Spinach.png',
     },
     {
-      'name': 'củ quả',
+      'name': 'Fruit',
       'images': 'assets/cart/veg.png',
     },
   ];
@@ -48,26 +48,26 @@ class __Home_screensState extends State<Home_screens> {
     {
       'images': 'assets/vegetable list/rau. /rau_muong-removebg.png',
       'names': 'Rau muống',
-      'gia': '1000\đ',
-      'giasoc': '500\đ'
+      'gia': '1000đ',
+      'giasoc': '500'
     },
     {
       'images': 'assets/vegetable list/rau. /rau_xa_nach-removebg-preview.png',
       'names': 'Rau xà nách',
-      'gia': '500\đ',
-      'giasoc': '300\đ'
+      'gia': '500đ',
+      'giasoc': '300'
     },
     {
       'images': 'assets/vegetable list/rau. /tải_xuống-removebg-preview.png',
       'names': 'Rau bắp cải',
-      'gia': '2000\đ',
-      'giasoc': '1500\đ'
+      'gia': '2000đ',
+      'giasoc': '1500'
     },
     {
       'images': 'assets/vegetable list/rau. /supno-removebg-preview.png',
       'names': 'Rau súp nơ',
-      'gia': '4000\đ',
-      'giasoc': '3000\đ'
+      'gia': '4000đ',
+      'giasoc': '3000'
     },
   ];
   @override
@@ -77,91 +77,91 @@ class __Home_screensState extends State<Home_screens> {
     Size size = utils.getscreenSize;
     GlobalMethods globalMethods = GlobalMethods();
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.3,
-            child: Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                return Image.asset(
-                  __offerImages[index],
-                  fit: BoxFit.fill,
-                );
-              },
-              itemCount: __offerImages.length,
-              pagination: const SwiperPagination(
-                  alignment: Alignment.bottomCenter,
-                  builder: DotSwiperPaginationBuilder(
-                      color: Colors.white, activeColor: Colors.red)),
-              autoplay: true,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height * 0.3,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return Image.asset(
+                    __offerImages[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                itemCount: __offerImages.length,
+                pagination: const SwiperPagination(
+                    alignment: Alignment.bottomCenter,
+                    builder: DotSwiperPaginationBuilder(
+                        color: Colors.white, activeColor: Colors.red)),
+                autoplay: true,
+              ),
             ),
-          ),
-          TextButton(
-              onPressed: () {},
-              child: TextWidget(
-                  text: 'View All',
-                  color: themeState
-                      ? Colors.yellow
-                      : Color.fromARGB(255, 213, 135, 161),
-                  texSize: FontStyle.normal)),
-          Row(
-            children: [
-              RotatedBox(
-                quarterTurns: 3,
-                child: Row(
-                  children: [
-                    TextWidget(
-                        text: 'On sale'.toUpperCase(),
-                        color: Colors.red,
-                        texSize: FontStyle.normal),
-                    const Icon(IconlyLight.discount)
-                  ],
-                ),
-              ),
-              Flexible(
-                child: SizedBox(
-                  height: size.height * 0.18,
-                  child: ListView.builder(
-                      itemCount: ListOnSale.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return OnSaleWidget(
-                          images: ListOnSale[index]['images'],
-                          name: ListOnSale[index]['name'],
-                        );
-                      }),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextWidget(
-                    text: 'Our Products',
+            TextButton(
+                onPressed: () {},
+                child: TextWidget(
+                    text: 'View All',
                     color: themeState
-                        ? Color.fromARGB(255, 155, 232, 30)
-                        : Color.fromARGB(255, 33, 214, 160),
-                    texSize: FontStyle.normal),
-                TextButton(
-                    onPressed: () {
-                      GlobalMethods.navigateTo(
-                          context: context, routeName: FeedScreens.routeName);
-                    },
-                    child: TextWidget(
-                        text: 'Browse all',
-                        color: themeState
-                            ? Colors.yellow
-                            : Color.fromARGB(255, 213, 135, 161),
-                        texSize: FontStyle.italic)),
+                        ? Colors.yellow
+                        : const Color.fromARGB(255, 213, 135, 161),
+                    texSize: FontStyle.normal)),
+            Row(
+              children: [
+                RotatedBox(
+                  quarterTurns: 3,
+                  child: Row(
+                    children: [
+                      TextWidget(
+                          text: 'On sale'.toUpperCase(),
+                          color: Colors.red,
+                          texSize: FontStyle.normal),
+                      const Icon(IconlyLight.discount)
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: SizedBox(
+                    height: size.height * 0.23,
+                    child: ListView.builder(
+                        itemCount: ListOnSale.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return OnSaleWidget(
+                            images: ListOnSale[index]['images'],
+                            name: ListOnSale[index]['name'],
+                          );
+                        }),
+                  ),
+                ),
               ],
             ),
-          ),
-          Expanded(
-            child: GridView.count(
-                shrinkWrap: false,
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextWidget(
+                      text: 'Our Products',
+                      color: themeState
+                          ? const Color.fromARGB(255, 155, 232, 30)
+                          : const Color.fromARGB(255, 33, 214, 160),
+                      texSize: FontStyle.normal),
+                  TextButton(
+                      onPressed: () {
+                        GlobalMethods.navigateTo(
+                            context: context, routeName: FeedScreens.routeName);
+                      },
+                      child: TextWidget(
+                          text: 'Browse all',
+                          color: themeState
+                              ? Colors.yellow
+                              : const Color.fromARGB(255, 213, 135, 161),
+                          texSize: FontStyle.italic)),
+                ],
+              ),
+            ),
+            GridView.count(
+                shrinkWrap: true,
                 padding: const EdgeInsets.all(10),
                 crossAxisCount: 2,
                 childAspectRatio: size.width / (size.height * 0.53),
@@ -173,9 +173,9 @@ class __Home_screensState extends State<Home_screens> {
                       names: user[index]['names'],
                       gia: user[index]['gia'],
                       giasoc: user[index]['giasoc']);
-                })),
-          )
-        ],
+                }))
+          ],
+        ),
       ),
     );
   }
