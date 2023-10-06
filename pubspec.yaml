@@ -36,6 +36,7 @@ dependencies:
   card_swiper: ^3.0.1
   fancy_shimmer_image: ^2.0.3
   flutter_bloc: ^8.1.3
+  popover: ^0.2.8+2
 
 
 
@@ -135,6 +136,10 @@ flutter:
     - assets/fruit/củ/tỏi-removebg-preview.png
     - assets/fruit/củ/vải-removebg-preview (1).png
     - assets/landing/voucher-removebg-preview.png
+    - assets/landing/free ship.png
+    - assets/landing/chia_sẻ-removebg-preview.png
+    - assets/landing/mess-removebg-preview.png
+    - assets/landing/5sao-removebg-preview.png
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

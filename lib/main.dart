@@ -1,5 +1,6 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
 import 'package:app/login_screen/bloc/login_cubit.dart';
+import 'package:app/purchase/bloc/purchase_bloc.dart';
 import 'package:app/register_screen/bloc/register_cubit.dart';
 import 'package:app/register_screen/register_page.dart';
 import 'package:app/services/theme_data.dart';
@@ -53,6 +54,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<CartCubit>(
           create: (context) => CartCubit(),
         ),
+        BlocProvider<PurchaseBloc>(create: (context) => PurchaseBloc())
       ],
       child: Consumer<DarkThemeProvider>(
         builder: (context, themeProvider, child) {
@@ -71,7 +73,9 @@ class _MyAppState extends State<MyApp> {
               },
               child: const RegisterPage(),
             ),
-            routes: {FeedScreens.routeName: (context) => const FeedScreens()},
+            routes: {
+              FeedScreens.routeName: (context) => const FeedScreens(),
+            },
           );
         },
       ),

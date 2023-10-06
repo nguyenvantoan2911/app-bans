@@ -57,7 +57,7 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                             color: Colors.black),
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 20,
                       ),
                       GestureDetector(
                         onTap: () {

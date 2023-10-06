@@ -1,6 +1,7 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
 import 'package:app/cart/state/products_state.dart';
 import 'package:app/provider/dark_theme_provider.dart';
+import 'package:app/purchase/purchase_screen.dart';
 import 'package:app/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -130,7 +131,17 @@ class _vagetableWidgetState extends State<vagetableWidget> {
                       side: BorderSide(color: Colors.transparent),
                     ),
                     backgroundColor: const Color.fromARGB(255, 164, 70, 128)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PurchaseScreen(
+                                image: widget.image,
+                                name: widget.name,
+                                soluong: widget.soluong,
+                                sotien: widget.gia,
+                              )));
+                },
                 child: const Text(
                   'Mua Ngay',
                   style: TextStyle(

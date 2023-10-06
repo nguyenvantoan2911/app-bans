@@ -14,7 +14,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  bool isSelecteds = false;
   @override
   Widget build(BuildContext context) {
     final cartCubit = context.watch<CartCubit>();
@@ -41,7 +40,7 @@ class _CartScreenState extends State<CartScreen> {
                 height: 15,
               ),
               Text(
-                'Chưa thêm sản phẩm vào giỏ hàng',
+                'The product has not been added \nto the cart',
                 style: TextStyle(
                   fontSize: 20,
                   color: themeStates ? Colors.white : Colors.black,
@@ -76,11 +75,26 @@ class _CartScreenState extends State<CartScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Checkbox(
-                                  value: product.isSelected,
-                                  onChanged: (value) {
-                                    use.checkBox(product);
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Container(
+                                    width: 20.3,
+                                    height: 20.3,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black),
+                                    ),
+                                    child: Checkbox(
+                                      activeColor: Colors.white,
+                                      checkColor: Colors.black,
+                                      value: product.isSelected,
+                                      onChanged: (value) {
+                                        use.checkBox(product);
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
                                 ),
                                 Container(
                                   height: 120,
@@ -132,8 +146,14 @@ class _CartScreenState extends State<CartScreen> {
                                           icon: CupertinoIcons.minus,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.all(7.0),
-                                          child: Text('${product.count}'),
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Text(
+                                            '${product.count}',
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black),
+                                          ),
                                         ),
                                         _quantity(
                                           color: const Color.fromARGB(
@@ -157,9 +177,9 @@ class _CartScreenState extends State<CartScreen> {
                               child: Text(
                                 'Total amount:\n=> ${product.count * int.parse(product.gia)}đ',
                                 style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                             ),
                             Positioned(
@@ -210,18 +230,17 @@ class _CartScreenState extends State<CartScreen> {
                               const Text(
                                 'Shop Voucher',
                                 style: TextStyle(
-                                  fontSize: 16.7,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 16.7,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                               const SizedBox(
-                                width: 33,
+                                width: 50,
                               ),
                               const Text(
                                 'Select or enter the code',
                                 style: TextStyle(
-                                  fontSize: 15,
-                                ),
+                                    fontSize: 15, color: Colors.black),
                               ),
                               const SizedBox(
                                 width: 2,
@@ -229,6 +248,7 @@ class _CartScreenState extends State<CartScreen> {
                               const Icon(
                                 Icons.arrow_forward_ios_outlined,
                                 size: 15,
+                                color: Colors.black,
                               ),
                             ],
                           ),
@@ -236,15 +256,35 @@ class _CartScreenState extends State<CartScreen> {
                         const Divider(
                           color: Colors.black,
                         ),
-                        Flexible(
+                        Expanded(
                           child: Row(
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Container(
+                                  width: 20.3,
+                                  height: 20.3,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                  ),
+                                  child: Checkbox(
+                                      activeColor: Colors.white,
+                                      checkColor: Colors.black,
+                                      value: state.isSelectAll,
+                                      onChanged: (value) {
+                                        use.checkBoxAll(value!);
+                                      }),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               const Text(
                                 'All products',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                               const SizedBox(
                                 width: 15,
@@ -252,24 +292,28 @@ class _CartScreenState extends State<CartScreen> {
                               Text(
                                 'Total payment:\n=>${state.totalPayment}đ',
                                 style: const TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                               const SizedBox(
-                                width: 4,
+                                width: 20,
                               ),
                               Container(
-                                width: 91,
-                                height: 52,
-                                color: Colors.amber[900],
+                                width: 100,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.amber[900]),
                                 child: GestureDetector(
                                   onTap: () {},
-                                  child: Text(
-                                    ' Buy\n Now(${cartItems.quantityCheckbox})',
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
+                                  child: Center(
+                                    child: Text(
+                                      ' Buy\n Now(${state.quantityCheckbox})',
+                                      style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                   ),
                                 ),
