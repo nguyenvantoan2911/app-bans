@@ -4,7 +4,7 @@ import 'package:app/purchase/bloc/purchase_bloc.dart';
 import 'package:app/register_screen/bloc/register_cubit.dart';
 import 'package:app/register_screen/register_page.dart';
 import 'package:app/services/theme_data.dart';
-import 'package:app/login_screen/loginstate.dart';
+import 'package:app/login_screen/login_screen.dart';
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/screens/btm_bar.dart';
 import 'package:app/browse_screen/browse_screen.dart';

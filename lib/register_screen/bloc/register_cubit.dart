@@ -41,7 +41,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         final userCredential =
             await _firebaseAuth.createUserWithEmailAndPassword(
                 email: state.email, password: state.password);
-
+        await _firebaseAuth.signOut();
         emit(state.copyWith(
             error: '',
             email: state.email,

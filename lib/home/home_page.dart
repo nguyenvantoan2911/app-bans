@@ -48,25 +48,25 @@ class __Home_screensState extends State<Home_screens> {
     {
       'images': 'assets/vegetable list/rau. /rau_muong-removebg.png',
       'names': 'Rau muống',
-      'gia': '1000đ',
+      'gia': '1000',
       'giasoc': '500'
     },
     {
       'images': 'assets/vegetable list/rau. /rau_xa_nach-removebg-preview.png',
       'names': 'Rau xà nách',
-      'gia': '500đ',
+      'gia': '500',
       'giasoc': '300'
     },
     {
       'images': 'assets/vegetable list/rau. /tải_xuống-removebg-preview.png',
       'names': 'Rau bắp cải',
-      'gia': '2000đ',
+      'gia': '2000',
       'giasoc': '1500'
     },
     {
       'images': 'assets/vegetable list/rau. /supno-removebg-preview.png',
       'names': 'Rau súp nơ',
-      'gia': '4000đ',
+      'gia': '4000',
       'giasoc': '3000'
     },
   ];

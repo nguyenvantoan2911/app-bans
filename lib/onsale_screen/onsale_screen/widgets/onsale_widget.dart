@@ -27,6 +27,26 @@ class vagetableWidget extends StatefulWidget {
 
 class _vagetableWidgetState extends State<vagetableWidget> {
   bool isLiked = false;
+  bool isAddedToCart = false;
+
+  void checkIfAddedToCart() {
+    final cartCubit = context.read<CartCubit>();
+    for (var item in cartCubit.state.items) {
+      if (item.name == widget.name) {
+        setState(() {
+          isAddedToCart = true;
+        });
+        return;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfAddedToCart();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<DarkThemeProvider>(context);
@@ -67,17 +87,22 @@ class _vagetableWidgetState extends State<vagetableWidget> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        var productToAdd = ProductsState(
-                          image: widget.image,
-                          name: widget.name,
-                          gia: widget.gia,
-                        );
-                        cartCubit.addToCart(productToAdd);
+                        if (!isAddedToCart) {
+                          var productToAdd = ProductsState(
+                            image: widget.image,
+                            name: widget.name,
+                            gia: widget.gia,
+                          );
+                          cartCubit.addToCart(productToAdd);
+                          setState(() {
+                            isAddedToCart = true;
+                          });
+                        }
                       },
                       child: Icon(
                         IconlyLight.bag2,
-                        size: 22,
-                        color: themeStates ? Colors.white : Colors.black,
+                        size: 25,
+                        color: isAddedToCart ? Colors.red : Colors.black,
                       ),
                     ),
                     GestureDetector(
@@ -88,7 +113,7 @@ class _vagetableWidgetState extends State<vagetableWidget> {
                       },
                       child: Icon(
                         IconlyLight.heart,
-                        size: 22,
+                        size: 25,
                         color: isLiked ? Colors.red : Colors.black,
                       ),
                     ),

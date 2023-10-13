@@ -4,6 +4,7 @@ class ProductsState {
   late String image;
   late int count;
   bool isSelected;
+
   ProductsState({
     this.isSelected = false,
     this.count = 1,

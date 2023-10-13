@@ -1,5 +1,6 @@
 import 'package:app/cart/bloc/cart_cubit.dart';
 import 'package:app/cart/state/products_state.dart';
+import 'package:app/purchase/purchase_screen.dart';
 import 'package:app/services/utils.dart';
 import 'package:app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,24 @@ class CategoriesWidget extends StatefulWidget {
 
 class _CategoriesWidgetState extends State<CategoriesWidget> {
   bool isLiked = false;
+  bool isAddedToCart = false;
+  void checkIfAddedToCart() {
+    final cartCubit = context.read<CartCubit>();
+    for (var item in cartCubit.state.items) {
+      if (item.name == widget.name) {
+        setState(() {
+          isAddedToCart = true;
+        });
+        return;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfAddedToCart();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,17 +84,22 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      var productToAdd = ProductsState(
-                        image: widget.image,
-                        name: widget.name,
-                        gia: widget.gia,
-                      );
-                      cartCubit.addToCart(productToAdd);
+                      if (!isAddedToCart) {
+                        var productToAdd = ProductsState(
+                          image: widget.image,
+                          name: widget.name,
+                          gia: widget.gia,
+                        );
+                        cartCubit.addToCart(productToAdd);
+                        setState(() {
+                          isAddedToCart = true;
+                        });
+                      }
                     },
-                    child: const Icon(
+                    child: Icon(
                       IconlyLight.bag2,
                       size: 22,
-                      color: Colors.black,
+                      color: isAddedToCart ? Colors.red : Colors.black,
                     ),
                   ),
                   GestureDetector(
@@ -131,7 +155,15 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
           ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 232, 234, 113)),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PurchaseScreen(
+                      name: widget.name,
+                      image: widget.image,
+                      soluong: widget.soluong,
+                      sotien: widget.gia);
+                }));
+              },
               icon: const Icon(Icons.shopping_cart),
               label: const Text(
                 'Mua Ngay',

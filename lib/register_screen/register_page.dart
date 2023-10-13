@@ -1,4 +1,4 @@
-import 'package:app/login_screen/loginstate.dart';
+import 'package:app/login_screen/login_screen.dart';
 import 'package:app/register_screen/bloc/register_cubit.dart';
 import 'package:app/register_screen/state/register_state.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextButton(
                         onPressed: () {
                           Future.delayed(const Duration(seconds: 1), () {
-                            Navigator.of(context).pushReplacement(
+                            Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
                                     const LoginState(email: ''),
@@ -107,8 +107,8 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             children: [
               SizedBox(
-                height: 270,
-                width: 430,
+                height: 265,
+                width: 400,
                 child: Stack(fit: StackFit.loose, children: [
                   ClipRRect(
                     borderRadius: const BorderRadius.only(
@@ -118,7 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         'assets/offres/ofres/thuc-pham-huu-co-la-gi-loi-ich-va-cach-nhan-biet--3.jpg'),
                   ),
                   const Positioned(
-                      top: 120,
+                      top: 125,
                       left: 140,
                       child: Column(
                         children: [
@@ -126,7 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             height: 30,
                           ),
                           CircleAvatar(
-                            radius: 60,
+                            radius: 55,
                             backgroundImage:
                                 AssetImage('assets/offres/ofres/wishlist.png'),
                           )

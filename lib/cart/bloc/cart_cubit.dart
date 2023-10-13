@@ -48,7 +48,10 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
-    emit(state.copyWith(items: updatedItems, tonggia: state.tonggia));
+    emit(state.copyWith(
+        items: updatedItems,
+        tonggia: state.tonggia,
+        totalPayment: state.totalPayment));
   }
 
   void reduced(ProductsState product) {
@@ -63,7 +66,10 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
-    emit(state.copyWith(items: updatedItems, tonggia: state.tonggia));
+    emit(state.copyWith(
+        items: updatedItems,
+        tonggia: state.tonggia,
+        totalPayment: state.totalPayment));
   }
 
   void checkBox(ProductsState products) {

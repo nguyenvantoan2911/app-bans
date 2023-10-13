@@ -21,6 +21,25 @@ class NewProduct extends StatefulWidget {
 
 class _NewProductState extends State<NewProduct> {
   late bool isLiked = false;
+  bool isAddedToCart = false;
+  void checkIfAddedToCart() {
+    final cartCubit = context.read<CartCubit>();
+    for (var item in cartCubit.state.items) {
+      if (item.name == widget.names) {
+        setState(() {
+          isAddedToCart = true;
+        });
+        return;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfAddedToCart();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<DarkThemeProvider>(context);
@@ -62,17 +81,22 @@ class _NewProductState extends State<NewProduct> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            var productToAdd = ProductsState(
-                              image: widget.images,
-                              name: widget.names,
-                              gia: widget.giasoc,
-                            );
-                            cartCubit.addToCart(productToAdd);
+                            if (!isAddedToCart) {
+                              var productToAdd = ProductsState(
+                                image: widget.images,
+                                name: widget.names,
+                                gia: widget.gia,
+                              );
+                              cartCubit.addToCart(productToAdd);
+                              setState(() {
+                                isAddedToCart = true;
+                              });
+                            }
                           },
                           child: Icon(
                             IconlyLight.bag2,
                             size: 22,
-                            color: isdark ? Colors.white : Colors.black,
+                            color: isAddedToCart ? Colors.red : Colors.black,
                           ),
                         ),
                         GestureDetector(
@@ -113,7 +137,7 @@ class _NewProductState extends State<NewProduct> {
                         width: 8,
                       ),
                       Text(
-                        widget.gia,
+                        '${widget.gia}đ',
                         style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,

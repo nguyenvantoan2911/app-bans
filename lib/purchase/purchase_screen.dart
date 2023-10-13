@@ -1,12 +1,11 @@
 import 'package:app/provider/dark_theme_provider.dart';
 import 'package:app/purchase/bloc/purchase_bloc.dart';
-import 'package:app/purchase/purchase_widget/purchase_item_widget.dart';
 import 'package:app/purchase/state/purchase_state.dart';
+import 'package:app/purchase/purchase_widget/purchase_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:popover/popover.dart';
 import 'package:provider/provider.dart';
 
 class PurchaseScreen extends StatefulWidget {
@@ -71,40 +70,27 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
                   ),
                 )),
             Positioned(
-              top: 60,
-              right: 40,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isLiked = !isLiked;
-                  });
-                },
-                child: Icon(
-                  IconlyLight.heart,
-                  size: 30,
-                  color: isLiked ? Colors.red : Colors.black,
-                ),
-              ),
-            ),
-            Positioned(
-                top: 58,
-                right: 5,
-                child: GestureDetector(
-                  onTap: () => showPopover(
-                      context: context,
-                      bodyBuilder: (context) => PurchaseItem(
-                            image: widget.image,
-                            name: widget.name,
-                            soluong: widget.soluong,
-                            sotien: widget.sotien,
-                          ),
-                      width: 250,
-                      height: 250),
-                  child: const Icon(
-                    Icons.more_vert,
-                    size: 35,
-                    color: Colors.black,
-                  ),
+                top: 60,
+                right: 10,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isLiked = !isLiked;
+                        });
+                      },
+                      child: Icon(
+                        IconlyLight.heart,
+                        size: 30,
+                        color: isLiked ? Colors.red : Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Button()
+                  ],
                 )),
           ]),
           Container(
@@ -263,7 +249,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.black),
-              ))
+              )),
         ],
       ),
     );
